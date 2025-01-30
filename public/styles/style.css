@@ -1,4 +1,35 @@
+/* body {
+    background-image: url('/images/background.png');
+} */
+
 section {
-    background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+    background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
     border-bottom: solid 5px;
 }
+
+h1 {
+    font-weight: 900;
+    text-shadow: 2px 2px 4px black;
+    font-size: 4rem;
+    color:aqua;
+}
+
+.headParagraph {
+    font-weight: 900;
+    font-size: 5rem;
+    text-shadow: 3px 2px 4px black;
+    color:aquamarine;
+}
+.ranchers-regular {
+    font-family: "Ranchers", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.truculenta-paragraph {
+    font-family: "Truculenta", serif;
+    font-optical-sizing: auto;
+    font-weight:900;
+    font-size: x-large;
+    font-style: normal;
+    font-variation-settings:"wdth" 100;
+} 

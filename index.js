@@ -18,7 +18,7 @@ app.get("/", async(req,res) => {
             type: "single",
         }
     });
-    console.log(result.data);
+    // console.log(result.data);
     res.render("index.ejs", {
         joke: (result.data.joke),
     })
