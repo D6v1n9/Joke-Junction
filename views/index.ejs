@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row justify-content-center text-center align-items-center">
         <div class="col-xl-8 col-lg-9 col-md-10">
-          <h1 class="ranchers-regular">
+          <h1 class="ranchers-regular headH1">
             Just a Joke,For you 😁.
           </h1>
           <div class="mb-4">
@@ -19,79 +19,91 @@
     </div>
   </section>
 
-  <!-- <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;"></div> -->
+<div class="d-flex flex-nowrap">
+    <div class="d-flex flex-column p-4 bg-body-tertiary" style="width: 280px;">
+        <form action="/" method="post">
+            <div>
+                <strong>Category</strong> 
+                  <div>
+                      <input type="checkbox" name="category[programming]" value="Programming">
+                      <label for="programming">Programming</label>
+                  </div>
+                  <div>
+                      <input type="checkbox" name="category[misc]" value="Miscellaneous" >
+                      <label for="misc">Misc</label>
+                  </div>
+                  <div>
+                      <input type="checkbox" name="category[dark]" value="Dark" >
+                      <label for="dark">Dark</label>
+                  </div>  
+                  <div>
+                      <input type="checkbox" name="category[pun]" value="Pun" >
+                      <label for="pun">Pun</label>
+                  </div>
+                  <div>
+                      <input type="checkbox" name="category[spooky]" value="Spooky" >
+                      <label for="spooky">Spooky</label>
+                  </div>
+                  <div>
+                      <input type="checkbox" name="category[christmas]" value="Christmas" >
+                      <label for="christmas">Christmas</label>
+                  </div>
+            </div>
+            <div>
+                <strong>Flags</strong>
+                  <div>
+                      <input type="checkbox" name="blacklistFlags[nsfw]" value="nsfw" >
+                      <label for="nsfw">nsfw</label>
+                  </div>
+                  <div>
+                      <input type="checkbox" name="blacklistFlags[religious]" value="religious" >
+                      <label for="religious">religious</label>
+                  </div>
+                  <div>
+                      <input type="checkbox" name="blacklistFlags[sexist]" value="sexist" >
+                      <label for="sexist">sexist</label>
+                  </div>
+                  <div>
+                      <input type="checkbox" name="blacklistFlags[explict]" value="explict" >
+                      <label for="explict">explict</label>
+                  </div>
+            </div>
+            <div>
+                <strong>Joke type</strong>
+                    <div>
+                        <input type="checkbox" name="type[single]" checked value="single">
+                        <label for="single">Single</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="type[pair]" value="twopart" >
+                        <label for="pair">Pair</label>
+                    </div>
+            </div>
+            <div>
+                    <div>
+                        <label for="number"><strong>Number</strong></label>
+                        <input type="type" name="number"   style="width: 40px; height: 22px;" >
+                        <p>(Choose from 1 to 1356)</p>
+                    </div>
+            </div>
+            <button class="btn-white">Generate</button>
+        </form>
+    </div>
+    
+    <div class="d-flex flex-column justify-content-center background">
+        <div class="container">
+          <div class="row justify-content-center text-center align-items-center">
+            <div class="col-xl-8 col-lg-9 col-md-10">
+              <div class="mb-4">
+                <p class="lead px-xl-5 truculenta-paragraph headParagraph">
+                  <%= joke %>
+                </p>
+              </div>
 
-  <div class="d-flex flex-column p-4 bg-body-tertiary" style="width: 280px;">
-    <div>
-        <strong>Category</strong>
-        <form action="" >
-            <div>
-                <input type="checkbox" name="" id="">
-                <label for="">Programming</label>
+              <button class="btn btn-lg btn-white mx-1" href="updatedIndex.ejs" data-smooth-scroll="">Good one!👍</button>
+              <a href="https://themes.getbootstrap.com/product/leap-multipurpose-bootstrap-theme/" class="btn btn-lg btn-primary-3 mx-1">Naah! another🙄</a>
             </div>
-            <div>
-                <input type="checkbox" name="" id="">
-                <label for="">Music</label>
-            </div>
-            <div>
-                <input type="checkbox" name="" id="">
-                <label for="">Dark</label>
-            </div>
-            <div>
-                <input type="checkbox" name="" id="">
-                <label for="">Pun</label>
-            </div>
-            <div>
-                <input type="checkbox" name="" id="">
-                <label for="">Spooky</label>
-            </div>
-            <div>
-                <input type="checkbox" name="" id="">
-                <label for="">Christmas</label>
-            </div>
-        </form>
-    </div>
-    <div>
-        <strong>Flags</strong>
-        <form action="" >
-            <div>
-                <input type="checkbox" name="" id="">
-                <label for="">nsfw</label>
-            </div>
-            <div>
-                <input type="checkbox" name="" id="">
-                <label for="">religious</label>
-            </div>
-            <div>
-                <input type="checkbox" name="" id="">
-                <label for="">sexist</label>
-            </div>
-            <div>
-                <input type="checkbox" name="" id="">
-                <label for="">explict</label>
-            </div>
-        </form>
-    </div>
-    <div>
-        <strong>Joke type</strong>
-        <form action="" >
-            <div>
-                <input type="checkbox" name="" id="">
-                <label for="">Single</label>
-            </div>
-            <div>
-                <input type="checkbox" name="" id="">
-                <label for="">Pair</label>
-            </div>
-        </form>
-    </div>
-    <div>
-        <form action="" >
-            <div>
-                <label for=""><strong>Number</strong></label>
-                <input type="type" name="" id="" style="width: 40px; height: 22px;">
-                <p>(Choose from 1 to 1356)</p>
-            </div>
-        </form>
+          </div>
+        </div>
     </div>
 </div>
