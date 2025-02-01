@@ -31,9 +31,15 @@ app.post("/",  async (req,res) => {
     try {
         const category = req.body.category;
         const param1 = [];
-        for(const key in category) {
-            param1.push(category[key]+",");
-        }
+        Object.keys(category).forEach(key => {
+            const value = category[key];
+            if(key === Object.keys(category)[Object.keys(category).length-1]) {
+                param1.push(value);
+            }
+            else {
+                param1.push(value+",");
+            }
+        })
         const strParam1 = "".concat(...param1);
 
         console.log(strParam1);
@@ -44,7 +50,7 @@ app.post("/",  async (req,res) => {
             }
         })
     } catch (error) {
-        console.log(error);
+        // console.log(error);
     }
 });
 
