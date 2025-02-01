@@ -30,24 +30,49 @@ app.post("/",  async (req,res) => {
     console.log(data);
     try {
         const category = req.body.category;
-        const param1 = [];
-        Object.keys(category).forEach(key => {
-            const value = category[key];
-            if(key === Object.keys(category)[Object.keys(category).length-1]) {
-                param1.push(value);
-            }
-            else {
-                param1.push(value+",");
-            }
-        })
-        const strParam1 = "".concat(...param1);
+        console.log(category);
+        const categoryArray = [];
 
-        console.log(strParam1);
-        
-        const result = await axios.get(API_URL, {
-            params:{
-                
-            }
+        if(category) {
+            Object.keys(category).forEach(key => {
+                const value = category[key];
+                if(key === Object.keys(category)[Object.keys(category).length-1]) {
+                    categoryArray.push(value);
+                }
+                else {
+                    categoryArray.push(value+",");
+                }
+            }) 
+        } else {
+            categoryArray.push("Any");
+        }
+        const paraCategory = "".concat(...categoryArray);
+        // console.log(paraCategory);
+
+
+        const flags = req.body.blacklistFlags;
+        const flagsArray = [];
+        if(flags) {
+            Object.keys(flags).forEach(key => {
+                const value = flags[key];
+                if(key === Object.keys(flags)[0]) {
+                    flagsArray.push("?blacklistFlags="+value);
+                }
+                else {
+                    flagsArray.push(","+value);
+                }
+            })
+        }
+        else {
+            flagsArray.push("");
+        }
+
+        const paraFlags = "".concat(...flagsArray);
+
+        // console.log(`${API_URL}/${paraCategory}${paraFlags}`);   
+
+        const result = await axios.get(`${API_URL}/${paraCategory}${paraFlags}`, {
+            
         })
     } catch (error) {
         // console.log(error);
