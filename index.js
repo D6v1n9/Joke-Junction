@@ -81,29 +81,31 @@ app.post("/",  async (req,res) => {
         const type = req.body.type;
         console.log(type);
         const typeArray = [];
-        const paraType = "";
+        let paraType = "";
         if(type) {
             Object.keys(type).forEach((key) => {
                 const value = type[key];
                 typeArray.push(value);
             })
+            if(typeArray.length === 1) {
+                paraType = "?type="+(typeArray[0]);
+            }
+            else {
+                paraType = "";
+            }
         }
         else {
             //show an error
         }
 
-        if(typeArray.length === 1) {
-            
-        }
+        console.log(paraType);
+
+        console.log(`${API_URL}/${paraCategory}${paraFlags}${paraType}`);   
 
 
 
-        // console.log(`${API_URL}/${paraCategory}${paraFlags}`);   
-
-
-
-
-        const result = await axios.get(`${API_URL}/${paraCategory}${paraFlags}`, {
+        
+        const result = await axios.get(`${API_URL}/${paraCategory}${paraFlags}${paraType}`, {
             
         })
     } catch (error) {
