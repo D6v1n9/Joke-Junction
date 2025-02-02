@@ -29,8 +29,11 @@ app.post("/",  async (req,res) => {
     // console.log(req.body.category.programming);
     console.log(data);
     try {
+
+        // Category filter
+
         const category = req.body.category;
-        console.log(category);
+        // console.log(category);
         const categoryArray = [];
 
         if(category) {
@@ -49,6 +52,8 @@ app.post("/",  async (req,res) => {
         const paraCategory = "".concat(...categoryArray);
         // console.log(paraCategory);
 
+
+        //Flag filter
 
         const flags = req.body.blacklistFlags;
         const flagsArray = [];
@@ -69,7 +74,34 @@ app.post("/",  async (req,res) => {
 
         const paraFlags = "".concat(...flagsArray);
 
+
+        //Joke type filter
+
+
+        const type = req.body.type;
+        console.log(type);
+        const typeArray = [];
+        const paraType = "";
+        if(type) {
+            Object.keys(type).forEach((key) => {
+                const value = type[key];
+                typeArray.push(value);
+            })
+        }
+        else {
+            //show an error
+        }
+
+        if(typeArray.length === 1) {
+            
+        }
+
+
+
         // console.log(`${API_URL}/${paraCategory}${paraFlags}`);   
+
+
+
 
         const result = await axios.get(`${API_URL}/${paraCategory}${paraFlags}`, {
             
