@@ -104,7 +104,7 @@ app.post("/",  async (req,res) => {
         
         console.log(paraType);
         
-        // Amount Jokes
+        // Amount of Jokes parameter
 
         const amount = req.body.amount;
         let paraAmount = "";
