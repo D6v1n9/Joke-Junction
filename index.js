@@ -50,36 +50,39 @@ app.post("/",  async (req,res) => {
             categoryArray.push("Any");
         }
         const paraCategory = "".concat(...categoryArray);
-        // console.log(paraCategory);
+        console.log(paraCategory);
 
 
         //Flag filter
 
         const flags = req.body.blacklistFlags;
         const flagsArray = [];
+        let paraFlags = "";
         if(flags) {
             Object.keys(flags).forEach(key => {
                 const value = flags[key];
                 if(key === Object.keys(flags)[0]) {
-                    flagsArray.push("?blacklistFlags="+value);
+                    flagsArray.push(value);
                 }
                 else {
                     flagsArray.push(","+value);
                 }
             })
+
+            paraFlags = "".concat(...flagsArray);
         }
         else {
-            flagsArray.push("");
+            flagsArray.push(null);
+            paraFlags = null;
         }
-
-        const paraFlags = "".concat(...flagsArray);
-
+        
+        console.log(paraFlags);
 
         //Joke type filter
 
 
         const type = req.body.type;
-        console.log(type);
+        // console.log(type);
         const typeArray = [];
         let paraType = "";
         if(type) {
@@ -88,10 +91,13 @@ app.post("/",  async (req,res) => {
                 typeArray.push(value);
             })
             if(typeArray.length === 1) {
-                paraType = "?type="+(typeArray[0]);
+                if(flags) {
+                    // &
+                    paraType = typeArray[0];
+                }
             }
             else {
-                paraType = "";
+                paraType = null;
             }
         }
         else {
@@ -100,14 +106,18 @@ app.post("/",  async (req,res) => {
 
         console.log(paraType);
 
-        console.log(`${API_URL}/${paraCategory}${paraFlags}${paraType}`);   
-
-
-
-        
-        const result = await axios.get(`${API_URL}/${paraCategory}${paraFlags}${paraType}`, {
-            
+        console.log(`${API_URL}/${paraCategory}`);
+        const result = await axios.get(`${API_URL}/${paraCategory}`, {
+            params: {
+                blacklistFlags: paraFlags,
+                type: paraType,
+            },
         })
+        console.log(result.data);
+
+        res.render("index.ejs", {
+            content : JSON.stringify(result.data)
+        });
     } catch (error) {
         // console.log(error);
     }

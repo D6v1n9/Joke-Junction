@@ -9,7 +9,7 @@
           </h1>
           <div class="mb-4">
             <p class="lead px-xl-5 truculenta-paragraph headParagraph">
-              <%= joke %>
+              <%= locals.joke %>
             </p>
           </div>
           <button class="btn btn-lg btn-white mx-1" href="updatedIndex.ejs" data-smooth-scroll="">Good one!👍</button>
@@ -64,7 +64,7 @@
                       <label for="sexist">sexist</label>
                   </div>
                   <div>
-                      <input type="checkbox" name="blacklistFlags[explict]" value="explict" >
+                      <input type="checkbox" name="blacklistFlags[explict]" value="explicit" >
                       <label for="explict">explict</label>
                   </div>
             </div>
@@ -80,16 +80,9 @@
                     </div>
             </div>
             <div>
-                    <div>
-                        <label for="number"><strong>Number</strong></label>
-                        <input type="type" name="number"   style="width: 40px; height: 22px;" >
-                        <p>(Choose from 1 to 1356)</p>
-                    </div>
-            </div>
-            <div>
                 <div>
                   <label for="amount"><strong>Amount </strong>of jokes:</label>
-                  <input type="text" name="amount" id="" style="width: 40px; height: 22px;">
+                  <input type="text" name="amount" id="" style="width: 40px; height: 22px;" value="1">
                   <p>(Maximum 10)</p>
                   <hr>
                 </div>
@@ -104,7 +97,7 @@
             <div class="col-xl-8 col-lg-9 col-md-10">
               <div class="mb-4">
                 <p class="lead px-xl-5 truculenta-paragraph headParagraph">
-                  <%= joke %>
+                  <%= locals.content%>
                 </p>
               </div>
 
