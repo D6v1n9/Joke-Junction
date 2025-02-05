@@ -52,7 +52,6 @@ app.post("/",  async (req,res) => {
         const paraCategory = "".concat(...categoryArray);
         console.log(paraCategory);
 
-
         //Flag filter
 
         const flags = req.body.blacklistFlags;
@@ -75,11 +74,10 @@ app.post("/",  async (req,res) => {
             flagsArray.push(null);
             paraFlags = null;
         }
-        
+
         console.log(paraFlags);
 
         //Joke type filter
-
 
         const type = req.body.type;
         // console.log(type);
@@ -103,14 +101,28 @@ app.post("/",  async (req,res) => {
         else {
             //show an error
         }
-
+        
         console.log(paraType);
+        
+        // Amount Jokes
+
+        const amount = req.body.amount;
+        let paraAmount = "";
+        if(amount == 1) {
+            paraAmount = null;
+        }
+        else {
+            paraAmount = amount;
+        }
+
+        console.log(paraAmount);
 
         console.log(`${API_URL}/${paraCategory}`);
         const result = await axios.get(`${API_URL}/${paraCategory}`, {
             params: {
                 blacklistFlags: paraFlags,
                 type: paraType,
+                amount: paraAmount,
             },
         })
         console.log(result.data);

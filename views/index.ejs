@@ -12,9 +12,7 @@
               <%= locals.joke %>
             </p>
           </div>
-          <button class="btn btn-lg btn-white mx-1" href="updatedIndex.ejs" data-smooth-scroll="">Good one!👍</button>
-          <a href="https://themes.getbootstrap.com/product/leap-multipurpose-bootstrap-theme/" class="btn btn-lg btn-primary-3 mx-1">Naah! another🙄</a>
-        </div>
+          </div>
       </div>
     </div>
   </section>
@@ -82,8 +80,7 @@
             <div>
                 <div>
                   <label for="amount"><strong>Amount </strong>of jokes:</label>
-                  <input type="text" name="amount" id="" style="width: 40px; height: 22px;" value="1">
-                  <p>(Maximum 10)</p>
+                  <input type="number" name="amount" id="" style="width: 40px; height: 22px;" value="1" max="10" min="1">
                   <hr>
                 </div>
             </div>
