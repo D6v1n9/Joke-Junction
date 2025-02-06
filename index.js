@@ -9,9 +9,7 @@ const API_URL = "https://v2.jokeapi.dev/joke";
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('public'));
 
-// app.get("/", (req,res) => {
-//     res.render("index.ejs" );
-// });
+let DayJoke = "";
 app.get("/", async(req,res) => {
     const result = await axios.get(API_URL+"/Any?safe-mode", {
         params:{
@@ -19,6 +17,7 @@ app.get("/", async(req,res) => {
         }
     });
     // console.log(result.data);
+    DayJoke = result.data.joke;
     res.render("index.ejs", {
         joke: (result.data.joke),
     })
@@ -118,17 +117,49 @@ app.post("/",  async (req,res) => {
         console.log(paraAmount);
 
         console.log(`${API_URL}/${paraCategory}`);
+
+        //Safe-mode
+
+        const safeMode = req.body.mode;
+        let paraSafe = "";
+        if(safeMode == 'safe-mode') {
+            paraSafe = "safe-mode";
+        }
+        else {
+            paraSafe = null;
+        }
+
+        console.log(paraSafe);
+
+/*      //Method 2 
+        
+        let params = {
+            blacklistFlags: paraFlags,
+            type: paraType,
+            amount: paraAmount,
+        };
+
+        // Conditionally add 'safe-mode' if safeMode === 'safe-mode'
+        if (safeMode === 'safe-mode') {
+            params['safe-mode'] = ''; // Add 'safe-mode' with an empty value
+        }
+
+        const result = await axios.get(`${API_URL}/${paraCategory}`, { params });
+ */
+
         const result = await axios.get(`${API_URL}/${paraCategory}`, {
             params: {
                 blacklistFlags: paraFlags,
                 type: paraType,
                 amount: paraAmount,
+                ...(safeMode === 'safe-mode' ? { 'safe-mode': '' } : {})
             },
         })
         console.log(result.data);
 
         res.render("index.ejs", {
-            content : JSON.stringify(result.data)
+            content : JSON.stringify(result.data),
+            joke: DayJoke,
         });
     } catch (error) {
         // console.log(error);
