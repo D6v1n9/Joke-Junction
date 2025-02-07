@@ -19,17 +19,16 @@ app.get("/", async(req,res) => {
     // console.log(result.data);
     DayJoke = result.data.joke;
     res.render("index.ejs", {
-        joke: (result.data.joke),
+        jokeHead: (result.data.joke),
     })
 });
 
 app.post("/",  async (req,res) => {
     const data = req.body;
-    // console.log(req.body.category.programming);
     console.log(data);
     try {
-
-        // Category filter
+                    
+                                    // Category filter
 
         const category = req.body.category;
         // console.log(category);
@@ -49,9 +48,9 @@ app.post("/",  async (req,res) => {
             categoryArray.push("Any");
         }
         const paraCategory = "".concat(...categoryArray);
-        console.log(paraCategory);
+        console.log("paraCategory: "+paraCategory);
 
-        //Flag filter
+                                //Flag filter
 
         const flags = req.body.blacklistFlags;
         const flagsArray = [];
@@ -70,16 +69,16 @@ app.post("/",  async (req,res) => {
             paraFlags = "".concat(...flagsArray);
         }
         else {
-            flagsArray.push(null);
             paraFlags = null;
         }
 
-        console.log(paraFlags);
+        console.log("paraFlag: "+paraFlags);
 
-        //Joke type filter
+                                
+                                //Joke type filter
 
         const type = req.body.type;
-        // console.log(type);
+        console.log(type);
         const typeArray = [];
         let paraType = "";
         if(type) {
@@ -88,10 +87,7 @@ app.post("/",  async (req,res) => {
                 typeArray.push(value);
             })
             if(typeArray.length === 1) {
-                if(flags) {
-                    // &
-                    paraType = typeArray[0];
-                }
+                paraType = typeArray[0];
             }
             else {
                 paraType = null;
@@ -101,7 +97,7 @@ app.post("/",  async (req,res) => {
             //show an error
         }
         
-        console.log(paraType);
+        console.log("paraType: "+paraType);
         
         // Amount of Jokes parameter
 
@@ -114,11 +110,10 @@ app.post("/",  async (req,res) => {
             paraAmount = amount;
         }
 
-        console.log(paraAmount);
+        console.log("paraAmount: "+paraAmount);
 
-        console.log(`${API_URL}/${paraCategory}`);
 
-        //Safe-mode
+                            //Safe-mode
 
         const safeMode = req.body.mode;
         let paraSafe = "";
@@ -147,6 +142,8 @@ app.post("/",  async (req,res) => {
         const result = await axios.get(`${API_URL}/${paraCategory}`, { params });
  */
 
+        console.log(`${API_URL}/${paraCategory}`);
+
         const result = await axios.get(`${API_URL}/${paraCategory}`, {
             params: {
                 blacklistFlags: paraFlags,
@@ -158,8 +155,11 @@ app.post("/",  async (req,res) => {
         console.log(result.data);
 
         res.render("index.ejs", {
-            content : JSON.stringify(result.data),
-            joke: DayJoke,
+            type:result.data.type,
+            joke: result.data.joke,
+            setup: result.data.setup,
+            delivery: result.data.delivery,
+            jokeHead: DayJoke,
         });
     } catch (error) {
         // console.log(error);
