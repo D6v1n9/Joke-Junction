@@ -20,7 +20,6 @@
 <div class="d-flex flex-nowrap">
     <div class="d-flex flex-column p-4 bg-body-tertiary" style="width: 280px;">
         <form action="/" method="post">
-            
             <div>
                 <strong>Category</strong> 
                   <div>
@@ -90,8 +89,7 @@
             </div>
             <hr>
 
-            
-            <button type="submit" class="btn btn-primary w-100">Generate</button>
+            <button type="submit" class="btn btn-primary w-100" id="myid">Generate</button>
         </form>
     </div>
     
@@ -100,6 +98,10 @@
           <div class="row justify-content-center   align-items-center">
             <div class="col-xl-8 col-lg-9 col-md-10">
               <div class="mb-4">
+                <% if(locals.text) { %>
+                  <p class="llead px-xl-5 truculenta-paragraph"><%= locals.text %></p>
+                <% } %>
+                <!-- "Welcome to the Joke Generator! Choose your preferences and click 'Generate' to get a funny joke!" -->
                   <% if(locals.type === 'twopart') { %>
                     <p class="llead px-xl-5 truculenta-paragraph">Person1: <%= locals.setup %></p>
                     <br>

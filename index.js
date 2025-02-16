@@ -9,8 +9,10 @@ const API_URL = "https://v2.jokeapi.dev/joke";
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('public'));
 
+
 let DayJoke = "";
 app.get("/", async(req,res) => {
+    const startingText = "Welcome to the Joke Generator! Choose your preferences and click 'Generate' to get a funny joke!";
     const result = await axios.get(API_URL+"/Any?safe-mode", {
         params:{
             type: "single",
@@ -20,14 +22,14 @@ app.get("/", async(req,res) => {
     DayJoke = result.data.joke;
     res.render("index.ejs", {
         jokeHead: (result.data.joke),
+        text: startingText
     })
 });
 
 app.post("/",  async (req,res) => {
     const data = req.body;
     console.log(data);
-    try {
-                    
+    try {    
                                     // Category filter
 
         const category = req.body.category;
@@ -165,6 +167,8 @@ app.post("/",  async (req,res) => {
         // console.log(error);
     }
 });
+
+
 
 app.listen(port, ()=> {
     console.log(`Server runnning on port ${port}`);
